@@ -1,0 +1,111 @@
+﻿@if (ViewBag.Service == "Вызов" || ViewBag.Service == "Все услуги" || ViewBag.Service == "СМС")
+{
+    <div class="select-info">
+        <div class="col-md-12">
+            <table class="table-info-panel">
+                <tr>
+                    <td><output>С: @ViewBag.DateFirst.ToString("d")</output></td>
+                    <td><output>По: @ViewBag.DateLast.ToString("d")</output></td>
+                    <td><output>Тип вызова: @ViewBag.Type</output></td>
+                    <td><output>Услуга: @ViewBag.Service</output></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+}
+    <div class="panel-accordion">
+        <div class="col-md-12">
+            <div class="panel-group" id="accordion">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                                Отобразить график операций за текущий период
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="collapseOne" class="panel-collapse collapse in">
+                        <div class="panel-body">
+                            @if (ViewBag.Service == "Вызов" || ViewBag.Service == "Все услуги")
+                            {
+                                <h3 class="h3-coll-tit">Данные об операциях "Вызов" по операторам</h3>
+                                {Html.RenderAction("ShowChartCall", "OperatorChart");}
+                            }
+                            @if (ViewBag.Service == "СМС" || ViewBag.Service == "Все услуги")
+                            {
+                                <h3 class="h3-coll-tit">Данные об операциях "СМС" по операторам</h3>
+                                { Html.RenderAction("ShowChartSms", "OperatorChart"); }
+                            }
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+                                Стиль общения(Вызовы)
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="collapseTwo" class="panel-collapse collapse in">
+                        <div class="panel-body">
+                            <h3 class="h3-coll-tit">Данные об операциях по дням недели</h3>
+                            @{Html.RenderAction("ShowChartStyleCommun", "StyleCommunChart");}
+                            <h3 class="h3-coll-tit">Данные об операциях по времени суток</h3>
+                            @{Html.RenderAction("ShowChartTOfDCall", "TimesOfDay");}
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+                                Стиль общения(СМС-сообщения)
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="collapseThree" class="panel-collapse collapse in">
+                        <div class="panel-body">
+                            @*<h3 class="h3-coll-tit">Данные об операциях по дням недели</h3>
+                            @{Html.RenderAction("ShowChartStyleCommunSms", "StyleCommunChart");}*@
+                            <h3 class="h3-coll-tit">Данные об операциях по времени суток</h3>
+                            @{Html.RenderAction("ShowChartTOfDSms", "TimesOfDay");}
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour">
+                                Стиль общения(Интернет трафик)
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="collapseFour" class="panel-collapse collapse in">
+                        <div class="panel-body">
+                            <h3 class="h3-coll-tit">Данные об операциях по дням недели</h3>
+                            @{Html.RenderAction("ShowChartStyleCommunInet", "StyleCommunChart");}
+                            <h3 class="h3-coll-tit">Данные об операциях по времени суток</h3>
+                            @{Html.RenderAction("ShowChartTOfDWeb", "TimesOfDay");}
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseFive">
+                                Таблица с операциями за выбранный период
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="collapseFive" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            @{Html.RenderAction("List", "TableSpecification");}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+

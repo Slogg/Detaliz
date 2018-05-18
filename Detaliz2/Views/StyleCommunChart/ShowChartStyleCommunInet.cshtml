@@ -1,0 +1,75 @@
+﻿@if (ViewBag.Service == "Вызов" || ViewBag.Service == "Все услуги" || ViewBag.Service == "СМС")
+{
+    <script>
+            var data = [
+            {
+               value: parseFloat(@ViewBag.PercDurWeek[0].ToString("0.##").Replace(',', '.')),
+               color: '#665E60',
+               highlight: '#666E80',
+               label: 'Будние дни: '
+            },
+           {
+               value: parseFloat(@ViewBag.PercDurWeek[1].ToString("0.##").Replace(',', '.')),
+               color: '#FFB400',
+               highlight: '#FFB520',
+               label: 'Выходные: '
+           }
+           ];
+
+            var options = {
+                responsive: true,
+                segmentShowStroke: true,
+                animateRotate: false,
+                animateScale: false,
+                percentageInnerCutout: 0,
+                tooltipTemplate: "<%= label %> <%= value %>%"
+            }
+
+            var ctx = document.getElementById("myChart-style-com-week-inet").getContext("2d");
+
+            var myChart = new Chart(ctx).Doughnut(data, options);
+
+            // Note - tooltipTemplate is for the string that shows in the tooltip
+
+            // legendTemplate is if you want to generate an HTML legend for the chart and use somewhere else on the page
+
+            // e.g:
+    </script>
+    <div class="col-md-6">
+        <div id="schedule" style="height: 200px">
+            <canvas id="myChart-style-com-week-inet" style="width: 100%; height: 100%;"></canvas>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="table-operator">
+            <table>
+
+                <tr>
+                    <th>Цвет</th>
+                    <th>По дням</th>
+                    <th>Количество(мин)</th>
+                    <th>Процент(%)</th>
+                </tr>
+                @if (ViewBag.DurWeek[0] != 0)
+                {
+                    <tr>
+                        <td class="table-color" style="background-color: #21ED2B; "></td>
+                        <td class="table-td">Пн. - Пят.</td>
+                        <td class="table-td">@ViewBag.DurWeek[0] кб.</td>
+                        <td class="table-td">@ViewBag.PercDurWeek[0].ToString("0.##") %</td>
+                    </tr>
+                }
+                @if (ViewBag.DurWeek[1] != 0)
+                {
+                    <tr>
+                        <td class="table-color" style="background-color: #ffb400; "></td>
+                        <td class="table-td">Выходные</td>
+                        <td class="table-td">@ViewBag.DurWeek[1] мин.</td>
+                        <td class="table-td">@ViewBag.PercDurWeek[1].ToString("0.##") %</td>
+                    </tr>
+                }
+            </table>
+        </div>
+
+    </div>
+}

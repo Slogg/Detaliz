@@ -1,0 +1,31 @@
+﻿@model IEnumerable<Detaliz2.Models.SpecificationList>
+
+    <div id="wrapper">
+        <table  cellpadding="0" cellspacing="0" border="0" class="sortable" id="sorter">
+            <tr>
+                <th>Номер</th>
+                <th>Дата</th>
+                <th>Время</th>
+                <th>Оператор</th>
+                <th>Сервис</th>
+                <th>Кол-во</th>
+                <th>Тип вызова</th>
+            </tr>
+            @foreach (var p in Model)
+            {
+                <tr>
+                    <td>@p.Number</td>
+                    <td>@p.Date.ToString("d")</td>
+                    <td>@p.Time</td>
+                    <td>@p.Operator</td>
+                    <td>@p.Service</td>
+                    <td>@p.Duration</td>
+                    <td>@p.Type</td>
+                </tr>
+            }
+        </table>
+        <script type="text/javascript">
+var sorter=new table.sorter("sorter");
+sorter.init("sorter",1);
+        </script>
+    </div>

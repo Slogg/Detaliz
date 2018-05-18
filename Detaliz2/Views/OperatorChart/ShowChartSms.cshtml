@@ -1,0 +1,116 @@
+﻿@if (ViewBag.Service == "Вызов" || ViewBag.Service == "Все услуги" || ViewBag.Service == "СМС")
+{
+    <script>
+            var data = [
+            {
+               value: parseFloat(@ViewBag.PercentDurationSms[0].ToString("0.##").Replace(',', '.')),
+               color: '#665E60',
+               highlight: '#666E80',
+                label: 'Другие'
+            },
+           {
+               value: parseFloat(@ViewBag.PercentDurationSms[1].ToString("0.##").Replace(',', '.')),
+               color: '#FFB400',
+               highlight: '#FFB520',
+               label: 'Билайн'
+           },
+           {
+               value: parseFloat(@ViewBag.PercentDurationSms[2].ToString("0.##").Replace(',', '.')),
+               color: '#F50000',
+               highlight: '#F50120',
+               label: 'МТС'
+           },
+           {
+               value: parseFloat(@ViewBag.PercentDurationSms[3].ToString("0.##").Replace(',', '.')),
+               color: '#04ED14',
+               highlight: '#04EE34',
+               label: 'Мегафон'
+           },
+           {
+               value: parseFloat(@ViewBag.PercentDurationSms[4].ToString("0.##").Replace(',', '.')),
+               color: '#841F7F',
+               highlight: '#842F8F',
+               label: 'Теле2'
+           }];
+
+            var options = {
+                responsive: true,
+                segmentShowStroke: true,
+                animateRotate: true,
+                animateScale: false,
+                percentageInnerCutout: 50,
+                tooltipTemplate: "<%= label %>: <%= value %>%"
+            }
+
+            var ctx = document.getElementById("myChartSms").getContext("2d");
+
+            var myChart = new Chart(ctx).Doughnut(data, options);
+
+            // Note - tooltipTemplate is for the string that shows in the tooltip
+            // legendTemplate is if you want to generate an HTML legend for the chart and use somewhere else on the page  e.g:
+
+    </script>
+    <div class="col-md-6">
+        <div id="schedule" style="height: 200px">
+            <canvas id="myChartSms" style="width: 100%; height: 100%;"></canvas>
+        </div>
+    </div>
+        <div class="col-md-6">
+            <div class="table-operator">
+                <table>
+                    <tr>
+                        <th>Цвет</th>
+                        <th>Оператор</th>
+                        <th>Кол-во(шт)</th>
+                        <th>Процент(%)</th>
+                    </tr>
+                    @if (ViewBag.DurationSms[0] != 0)
+                    {
+                        <tr>
+                            <td class="table-color" style="background-color: #665E60; "></td>
+                            <td class="table-td">Other</td>
+                            <td class="table-td">@ViewBag.DurationSms[0] шт.</td>
+                            <td class="table-td">@ViewBag.PercentDurationSms[0].ToString("0.##") %</td>
+                        </tr>
+                    }
+                    @if (ViewBag.DurationSms[1] != 0)
+                    {
+                        <tr>
+                            <td class="table-color" style="background-color: #ffb400; "></td>
+                            <td class="table-td">Beeline</td>
+                            <td class="table-td">@ViewBag.DurationSms[1] шт.</td>
+                            <td class="table-td">@ViewBag.PercentDurationSms[1].ToString("0.##") %</td>
+                        </tr>
+                    }
+                    @if (ViewBag.DurationSms[2] != 0)
+                    {
+                        <tr>
+                            <td class="table-color" style="background-color: #F50000; "></td>
+                            <td class="table-td">MTS</td>
+                            <td class="table-td">@ViewBag.DurationSms[2] шт.</td>
+                            <td class="table-td">@ViewBag.PercentDurationSms[2].ToString("0.##") %</td>
+                        </tr>
+                    }
+                    @if (ViewBag.DurationSms[3] != 0)
+                    {
+                        <tr>
+                            <td class="table-color" style="background-color: #04ED14; "></td>
+                            <td class="table-td">Megafon</td>
+                            <td class="table-td">@ViewBag.DurationSms[3] шт.</td>
+                            <td class="table-td">@ViewBag.PercentDurationSms[3].ToString("0.##") %</td>
+                        </tr>
+                    }
+                    @if (ViewBag.DurationSms[4] != 0)
+                    {
+                        <tr>
+                            <td class="table-color" style="background-color: #841F7F; "></td>
+                            <td class="table-td">Tele 2</td>
+                            <td class="table-td">@ViewBag.DurationSms[4] шт.</td>
+                            <td class="table-td">@ViewBag.PercentDurationSms[4].ToString("0.##") %</td>
+                        </tr>
+                    }
+                </table>
+            </div>
+        </div>
+}
+

@@ -1,0 +1,22 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div id="jumbotron">
+@if (ViewBag.Service != "Вызов" || ViewBag.Service != "Все услуги" || ViewBag.Service != "СМС")
+{
+    <div class="home-page">
+        <h2 style="color: #1c98ad;">СЕРВИС АНАЛИЗА ДЕТАЛИЗИРОВАННОГО ОТЧЁТА</h2>
+        <h4 style="color: #1c98ad;">Для того, чтобы отобразить панель выбора данных нажмите на синюю 
+        кнопку "Меню" в верхнем правом углу</h4>
+        <div class="back-image">
+            <img src="~/Images/back-logo.png" />
+        </div>
+    </div>
+}
+else
+{
+     {Html.Partial("Collapse", "Home");}
+}
+    
+</div>
